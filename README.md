@@ -140,8 +140,8 @@ isort .
 
 ### Top Contributors
 
-<a href="https://github.com/feneko/spotify-3d-keychain/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=feneko/spotify-3d-keychain" alt="Contributors Image">
+<a href="https://github.com/feenko/spotify-3d-keychain/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=feenko/spotify-3d-keychain" alt="Contributors Image">
 </a>
 
 <p align="right" style="font-size: 0.9rem;"><a href="#readme-top">Back to the top ↑</a></p>
