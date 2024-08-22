@@ -29,13 +29,34 @@ class FontLoader:
         return loaded_fonts
 
 
-class Folder:
+class FolderUtils:
     @staticmethod
-    def make_folder():
-        os.makedirs(Folder.get_folder_path(), exist_ok=True)
+    def create_folder() -> None:
+        """
+        Creates the folder for storing the generated keychains
+
+        Raises
+        ------
+        NotImplementedError
+            If the platform is not supported
+        """
+        os.makedirs(FolderUtils.get_folder_path(), exist_ok=True)
 
     @staticmethod
     def get_folder_path() -> str:
+        """
+        Returns the path to the folder for storing the generated keychains
+
+        Returns
+        -------
+        str
+            The path to the folder for storing the generated keychains
+
+        Raises
+        ------
+        NotImplementedError
+            If the platform is not supported
+        """
         if (
             platform.system() == "Windows"
             or platform.system() == "Darwin"
@@ -45,13 +66,23 @@ class Folder:
                 os.path.expanduser("~"), "Documents", "Spotify Keychains"
             )
         else:
-            raise NotImplementedError("Unsupported platform")
+            raise NotImplementedError(
+                "Unsupported platform, please report this issue. https://github.com/feenko/spotify-3d-keychain/issues"
+            )
 
     @staticmethod
     def get_next_file_path() -> str:
-        folder_path = Folder.get_folder_path()
-        files = [file for file in os.listdir(folder_path) if file.endswith(".stl")]
-        return os.path.join(folder_path, f"keychain_{len(files) + 1}.stl")
+        """
+        Returns the path to the next keychain file
+
+        Returns
+        -------
+        str
+            The path to the next keychain file
+        """
+        folder_path = FolderUtils.get_folder_path()
+        file_count = sum(1 for file in os.listdir(folder_path) if file.endswith(".stl"))
+        return os.path.join(folder_path, f"keychain_{file_count + 1}.stl")
 
 
 class SpotifyLinkParser:

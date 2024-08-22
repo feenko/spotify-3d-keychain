@@ -8,15 +8,15 @@ import cadquery as cq
 import requests
 from PIL import Image
 
-from helpers.utils import Folder, SpotifyLinkParser
+from helpers.utils import FolderUtils, SpotifyLinkParser
 
 
 def show_in_folder() -> None:
     """
     Opens the result folder in the file explorer.
     """
-    Folder.make_folder()
-    folder_path = Folder.get_folder_path()
+    FolderUtils.create_folder()
+    folder_path = FolderUtils.get_folder_path()
 
     if platform.system() == "Windows":
         os.startfile(folder_path)
@@ -58,7 +58,7 @@ def generate_model(spotify_url: str, window: Any) -> None:
         window.set_status("Failed to generate model (1)")
         return None
 
-    Folder.make_folder()
+    FolderUtils.create_folder()
 
     img = Image.open(io.BytesIO(response.content)).crop((160, 0, 640 - 31, 160))
     width, height = img.size
@@ -103,7 +103,7 @@ def generate_model(spotify_url: str, window: Any) -> None:
         )
         curr_bar += 1
 
-    cq.exporters.export(model, Folder.get_next_file_path())
+    cq.exporters.export(model, FolderUtils.get_next_file_path())
     window.set_status("Model generated successfully, check the folder!")
 
     return None
