@@ -112,6 +112,8 @@ To start using the program, you need to follow the steps below.
 -   [ ] Fix compatibility issues
     -   [ ] macOS
     -   [ ] Linux
+-   [ ] Fix application not being responsive while generating the model
+-   [ ] Slightly improve the design of the application
 
 <p align="right" style="font-size: 0.9rem;"><a href="#readme-top">Back to the top ↑</a></p>
 
