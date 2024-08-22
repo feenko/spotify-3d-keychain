@@ -8,23 +8,66 @@ from PySide6.QtGui import QFont, QFontDatabase
 class FontLoader:
     @staticmethod
     def load_font(font_path: str) -> Union[QFont, None]:
+        """
+        Loads a font from a given path.
+
+        Parameters
+        ----------
+        font_path : str
+            The path to the font file.
+
+        Returns
+        -------
+        Union[QFont, None]
+            The loaded font if successful, otherwise None.
+
+        Example
+        -------
+        >>> FontLoader.load_font("assets/fonts/Poppins-Light.ttf")
+        QFont('Poppins Light')
+        """
         font_id = QFontDatabase.addApplicationFont(font_path)
 
         if font_id == -1:
-            print(f"Failed to load font: {font_path}")
+            print(f"Failed to load font from path: {font_path}")
             return QFont()
-        else:
-            font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
-            print(f"Loaded font: {font_family}")
-            return QFont(font_family)
+
+        font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+        print(f"Successfully loaded font: {font_family}")
+        return QFont(font_family)
 
     @staticmethod
     def load_fonts(fonts: dict[str, str]) -> Dict[str, QFont]:
+        """
+        Loads multiple fonts from a given dictionary of font names and paths.
+
+        Parameters
+        ----------
+        fonts : dict[str, str]
+            A dictionary containing font names as keys and font paths as values.
+
+        Returns
+        -------
+        Dict[str, QFont]
+            A dictionary containing the loaded fonts.
+
+        Example
+        -------
+        >>> FontLoader.load_fonts(
+        ...     {
+        ...         "Poppins-Light": "assets/fonts/Poppins-Light.ttf",
+        ...         "Poppins-Regular": "assets/fonts/Poppins-Regular.ttf",
+        ...     }
+        ... )
+        {
+            'Poppins-Light': QFont('Poppins Light'),
+            'Poppins-Regular': QFont('Poppins Regular')
+        }
+        """
         loaded_fonts = {}
 
         for font_name, font_path in fonts.items():
-            font = FontLoader.load_font(font_path)
-            loaded_fonts[font_name] = font
+            loaded_fonts[font_name] = FontLoader.load_font(font_path)
 
         return loaded_fonts
 
