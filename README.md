@@ -19,7 +19,10 @@
   </p>
 </div>
 
-## Table of Contents
+<br>
+
+<details>
+<summary>Table of Contents</summary>
 
 -   [About the Project](#about-the-project)
     -   [Built With](#built-with)
@@ -31,6 +34,10 @@
 -   [Contributing](#contributing)
 -   [License](#license)
 -   [Attribution](#attribution)
+
+</details>
+
+---
 
 ## About The Project
 
