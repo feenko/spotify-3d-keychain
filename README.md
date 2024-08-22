@@ -44,6 +44,8 @@
 > [!IMPORTANT]
 > This is a updated and more modern version of the [Spotify Keychain 3D Model](https://github.com/ricdigi/spotify_keychain_3D_model) generator.
 
+![Banner](assets/images/banner.png)
+
 This program generates a customized Spotify keychain with your favorite song, album, artist, or playlist code that you can scan and listen to the music directly from Spotify.
 
 Previously, the original project was made by [ricdigi](https://github.com/ricdigi) and I decided to make a better as well as a more modern version of it.
