@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         # Initialize window
-        self.setFixedSize(480, 351)
+        self.setFixedSize(480, 329)
         self.setStyleSheet("background-color: #1a1a1a;")
         self.setWindowTitle("Spotify Keychain — 3D Model Generator")
 
@@ -142,25 +142,14 @@ class MainWindow(QMainWindow):
         self.status_label.show()
 
         # Github Link
-        self.contributors_footer = QLabel(
-            'GUI Made by <a href="https://github.com/feenko" style="color: #1db954; text-decoration: none;">@feenko</a>, Original by <a href="https://github.com/ricdigi" style="color: #1db954; text-decoration: none;">@ricdigi</a>',
-            self,
-        )
-
-        self.contributors_footer.setFont(font)
-        self.contributors_footer.setOpenExternalLinks(True)
-        self.contributors_footer.setGeometry(20, 295, 440, 20)
-        self.contributors_footer.setStyleSheet("color: #999999;")
-        self.contributors_footer.show()
-
         self.view_on_github = QLabel(
-            'View on <a href="https://github.com/" style="color: #1db954; text-decoration: none;">GitHub</a>',
+            'View source on <a href="https://github.com/feenko/spotify-3d-keychain" style="color: #1db954; text-decoration: none;">GitHub</a>',
             self,
         )
 
         self.view_on_github.setFont(font)
         self.view_on_github.setOpenExternalLinks(True)
-        self.view_on_github.setGeometry(20, 314, 440, 20)
+        self.view_on_github.setGeometry(20, 295, 440, 20)
         self.view_on_github.setStyleSheet("color: #999999;")
         self.view_on_github.show()
 
