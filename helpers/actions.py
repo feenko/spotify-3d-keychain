@@ -13,7 +13,12 @@ from helpers.utils import FolderUtils, SpotifyLinkParser
 
 def show_in_folder() -> None:
     """
-    Opens the result folder in the file explorer.
+    Opens the result folder in the file explorer. (Windows, macOS, Linux)
+
+    Raises
+    ------
+    NotImplementedError
+        If the platform is not supported
     """
     FolderUtils.create_folder()
     folder_path = FolderUtils.get_folder_path()
@@ -32,18 +37,18 @@ def generate_model(spotify_url: str, window: Any) -> None:
     """
     Generates a model based on the Spotify URL input.
 
-    Args:
-        spotify_url (str): The Spotify URL input.
-        window (Any): The window object to set the status.
-
-    Returns:
-        None
+    Parameters
+    ----------
+    spotify_url : str
+        The Spotify URL input
+    window : Any
+        The main window
     """
     spotify_url_data = SpotifyLinkParser.parse_link(spotify_url)
 
     if spotify_url_data is None:
         window.set_status("Invalid Spotify URL")
-        return None
+        return
 
     spotify_code_url = (
         "https://www.spotifycodes.com/downloadCode.php?uri=jpeg%2F000000%2Fwhite%2F640%2Fspotify%3A"
@@ -52,17 +57,24 @@ def generate_model(spotify_url: str, window: Any) -> None:
         + spotify_url_data[1]
     )
 
-    response = requests.get(spotify_code_url)
-
-    if not response.ok or not response.content:
-        window.set_status("Failed to generate model (1)")
-        return None
+    try:
+        response = requests.get(spotify_code_url)
+        response.raise_for_status()
+    except requests.RequestException:
+        window.set_status(
+            "Failed to generate model. This might be issue with the SpotifyCodes API."
+        )
+        return
 
     FolderUtils.create_folder()
 
-    img = Image.open(io.BytesIO(response.content)).crop((160, 0, 640 - 31, 160))
-    width, height = img.size
+    try:
+        img = Image.open(io.BytesIO(response.content)).crop((160, 0, 609, 160))
+    except (IOError, ValueError):
+        window.set_status("Failed to process image. Please try again.")
+        return
 
+    width, height = img.size
     img = img.load()
 
     bar_heights = []
@@ -83,16 +95,13 @@ def generate_model(spotify_url: str, window: Any) -> None:
             bar_heights.append(max_bar_height)
             max_bar_height = 0
 
-    print()
-    print(f"There are {len(bar_heights)} bars of heights")
-
+    print(f"\nThere are {len(bar_heights)} bars of heights")
     for i, bar in enumerate(bar_heights):
         print(f"Bar {i + 1}: {bar}")
 
     model = cq.importers.importStep("assets/models/spotify_keychain.step")
 
     curr_bar = 0
-
     for bar in bar_heights:
         model = (
             model.pushPoints([(15.5 + curr_bar * 1.88, 7.5)])
@@ -105,5 +114,3 @@ def generate_model(spotify_url: str, window: Any) -> None:
 
     cq.exporters.export(model, FolderUtils.get_next_file_path())
     window.set_status("Model generated successfully, check the folder!")
-
-    return None
