@@ -75,8 +75,7 @@ To start using the program, you need to follow the steps below.
 
 ### Prerequisites
 
--   [Python 3.12](https://www.python.org/) or higher
--   Pip (Python Package Installer)
+-   [Python 3.12](https://www.python.org/) installed (or newer)
 -   Git (Optional)
 
 ### Installation
@@ -89,19 +88,28 @@ To start using the program, you need to follow the steps below.
 
     or download the repository as a ZIP file and extract it.
 
-2. Install the required packages
+2. Navigate to the project directory
 
     ```sh
-    pip install -r requirements.txt
+    cd spotify-3d-keychain
     ```
 
-3. Run the program
-    ```sh
-    # on Windows
-    python main.py
-    # on macOS
-    python3 main.py
-    ```
+3. Depending on your operating system, run the following command to start the program
+
+    - Windows
+
+        ```sh
+        setup.bat
+        ```
+
+    - macOS/Linux
+
+        > [!WARNING]
+        > The macOS and Linux versions are still in development and may not work as expected.
+
+        ```sh
+        setup.sh
+        ```
 
 <p align="right" style="font-size: 0.9rem;"><a href="#readme-top">Back to the top ↑</a></p>
 
