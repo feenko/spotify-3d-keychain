@@ -54,24 +54,34 @@ class Folder:
         return os.path.join(folder_path, f"keychain_{len(files) + 1}.stl")
 
 
-class SpotifyURL:
+class SpotifyLinkParser:
     @staticmethod
-    def get_link_data(share_link: str) -> Union[Tuple[str, str], None]:
+    def parse_link(share_link: str) -> Union[Tuple[str, str], None]:
         """
         Extracts the type and URI from a Spotify share link.
 
-        Args:
-            share_link (str): The Spotify share link.
+        Parameters
+        ----------
+        share_link : str
+            A Spotify share link that may contain track, album, artist, or playlist identifiers.
 
-        Returns:
-            Union[Tuple[str, str], None]: The type and URI if found, None otherwise
+        Returns
+        -------
+        Union[Tuple[str, str], None]
+            A tuple containing the type and URI of the Spotify resource if found, otherwise None.
+
+        Example
+        --------
+        >>> SpotifyLinkParser.parse_link("https://open.spotify.com/track/5Q6f5I2abTY6yD9QhvYwwc")
+        ('track', '5Q6f5I2abTY6yD9QhvYwwc')
         """
-        link = share_link.split("?")[0]
-        parts = share_link.split("/")
+        base_link = share_link.split("?")[0]
+        parts = base_link.split("/")
 
-        for i, part in enumerate(parts):
-            if part in ["track", "album", "artist", "playlist"]:
-                if i + 1 < len(parts):
-                    return (part, parts[i + 1])
+        valid_types = {"track", "album", "artist", "playlist"}
+
+        for i in range(1, len(parts) - 1):
+            if parts[i] in valid_types:
+                return (parts[i], parts[i + 1])
 
         return None

@@ -8,7 +8,7 @@ import cadquery as cq
 import requests
 from PIL import Image
 
-from helpers.utils import Folder, SpotifyURL
+from helpers.utils import Folder, SpotifyLinkParser
 
 
 def show_in_folder() -> None:
@@ -39,7 +39,7 @@ def generate_model(spotify_url: str, window: Any) -> None:
     Returns:
         None
     """
-    spotify_url_data = SpotifyURL.get_link_data(spotify_url)
+    spotify_url_data = SpotifyLinkParser.parse_link(spotify_url)
 
     if spotify_url_data is None:
         window.set_status("Invalid Spotify URL")
