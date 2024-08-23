@@ -59,7 +59,7 @@ class TestSpotifyLinkParser(unittest.TestCase):
         link = ""
         self.assertIsNone(SpotifyLinkParser.parse_link(link))
 
-    def test_invalid_malfomed_link(self):
+    def test_invalid_malformed_link(self):
         link = "not_a_spotify_link"
         self.assertIsNone(SpotifyLinkParser.parse_link(link))
 
