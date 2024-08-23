@@ -32,6 +32,10 @@
     -   [Installation](#installation)
 -   [Roadmap](#roadmap)
 -   [Contributing](#contributing)
+    -   [Before you start](#before-you-start)
+    -   [Commit Messages](#commit-messages)
+    -   [Formatting](#formatting)
+    -   [Top Contributors](#top-contributors)
 -   [License](#license)
 -   [Attribution](#attribution)
 
