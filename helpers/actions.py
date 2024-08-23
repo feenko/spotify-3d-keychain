@@ -61,9 +61,7 @@ def generate_model(spotify_url: str, window: Any) -> None:
         response = requests.get(spotify_code_url)
         response.raise_for_status()
     except requests.RequestException:
-        window.set_status(
-            "Failed to generate model. This might be issue with the SpotifyCodes API."
-        )
+        window.set_status("Failed to generate model. This might be issue with the SpotifyCodes API.")
         return
 
     FolderUtils.create_folder()
