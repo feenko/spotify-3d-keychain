@@ -1,15 +1,5 @@
 #!/bin/bash
 
-clear_screen() {
-    if [ "$OSTYPE" == "linux-gnu"* ]; then
-        clear
-        elif [ "$OSTYPE" == "darwin"* ]; then
-        clear
-    else
-        echo "Unknown OS. Cannot clear screen."
-    fi
-}
-
 # Check if the 'venv' folder exists
 if [ -d "venv" ]; then
     echo "Virtual environment already exists."
@@ -19,35 +9,29 @@ else
 fi
 
 # Activate the virtual environment
-if [ "$OSTYPE" == "linux-gnu"* ] || [ "$OSTYPE" == "darwin"* ]; then
-    source venv/bin/activate
-else
-    echo "Unsupported OS. Exiting."
-    exit 1
-fi
+source venv/bin/activate
 
 # Install dependencies from requirements.txt
 if [ -f "requirements.txt" ]; then
-    echo "Installing dependencies... (This may take a while)"
-    python3 -m pip install -r requirements.txt --quiet
+    echo "Installing dependencies... This may take a while."
+    python3 -m pip install -r requirements.txt -q
 else
-    echo "requirements.txt not found!"
+    echo "requirements.txt not found."
     deactivate
     exit 1
 fi
 
 # Clear the screen
-clear_screen
+clear
 
 # Run the main.py script
 if [ -f "main.py" ]; then
-    echo "Running main.py..."
+    echo "Executing program..."
+    echo ""
     python3 main.py
 else
-    echo "main.py not found!"
-    deactivate
-    exit 1
+    echo "main.py not found."
 fi
 
-# Deactivate virtual environment after execution
+# Deactivate the virtual environment
 deactivate

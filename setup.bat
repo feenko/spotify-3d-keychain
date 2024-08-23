@@ -13,8 +13,8 @@ call venv\Scripts\activate
 
 REM Install dependencies from requirements.txt
 if exist requirements.txt (
-    echo Installing dependencies... (This may take a while)
-    python -m pip install -r requirements.txt --quiet
+    echo Installing dependencies... This may take a while.
+    pip install -r requirements.txt -q
 ) else (
     echo requirements.txt not found!
     deactivate
@@ -26,13 +26,13 @@ cls
 
 REM Run the main.py script
 if exist main.py (
-    echo Running main.py...
+    echo Executing program...
+    echo.
     python main.py
 ) else (
     echo main.py not found!
     deactivate
-    exit /b
 )
 
-REM Deactivate the virtual environment after execution
+REM Deactivate the virtual environment
 deactivate
