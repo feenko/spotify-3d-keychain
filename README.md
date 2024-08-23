@@ -108,7 +108,6 @@ To start using the program, you need to follow the steps below.
 
     - macOS/Linux
 
-        > [!WARNING]
         > The macOS and Linux versions are still in development and may not work as expected.
 
         ```sh
