@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -22,11 +22,4 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m unittest discover -v -s tests
-
-      - name: Save test results
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: test-results.xml
+          python -m unittest discover tests -v
