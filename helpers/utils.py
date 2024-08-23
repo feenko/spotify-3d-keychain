@@ -155,7 +155,10 @@ class SpotifyLinkParser:
         valid_types = {"track", "album", "artist", "playlist"}
 
         for i in range(1, len(parts) - 1):
-            if parts[i] in valid_types:
+            # Check if the part is a valid type and if there is a URI following it
+            # Example: https://open.spotify.com/track/5Q6f5I2abTY6yD9QhvYwwc
+            # The type is "track" and the URI is "5Q6f5I2abTY6yD9QhvYwwc"
+            if parts[i] in valid_types and len(parts) > i + 1 and len(parts[i + 1]) > 0:
                 return (parts[i], parts[i + 1])
 
         return None
