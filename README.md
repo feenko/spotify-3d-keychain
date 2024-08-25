@@ -114,7 +114,8 @@ To start using the program, you need to follow the steps below.
 
 -   [x] Develop the GUI interface
 -   [x] Rewrite README.md
--   [ ] Fix compatibility issues
+-   [ ] Add Hole Type option
+-   [ ] Add support for different operating systems
     -   [ ] macOS
     -   [ ] Linux
 -   [ ] Fix application not being responsive while generating the model
