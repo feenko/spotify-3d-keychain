@@ -106,13 +106,7 @@ To start using the program, you need to follow the steps below.
         setup.bat
         ```
 
-    - macOS/Linux
-
-        > The macOS and Linux versions are still in development and may not work as expected.
-
-        ```sh
-        setup.sh
-        ```
+    - macOS and Linux isn't supported yet. Consider making a pull request to fix the compatibility issues.
 
 <p align="right" style="font-size: 0.9rem;"><a href="#readme-top">Back to the top ↑</a></p>
 
